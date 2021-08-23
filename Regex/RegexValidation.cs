@@ -2,36 +2,54 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Globalization;
-namespace RegexImplementation
+
+namespace UserRegistrationRegex
 {
-    public class RegexValidation
+    public class ValidationRegex
     {
         public static string NAME_REGEX = "^[A-Z]{1}[A-Za-z]{3,}$";
-        public static string MOBILENUMBER_REGEX = "^[0-9]{10}$";
-        public static string EMAIL_REGEX =@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
-        public static string PASSWORD_REGEX = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+        public static string MOBILENUMBER_REGEX = @"\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})";
+        public static string EMAIL_REGEX = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
+        public static string PASSWORD_REGEX = "^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{8,}$";
 
-        public bool ValidateFirstName()
+        public bool ValidateFirstName(string name)
         {
-          return Regex.IsMatch("karan", NAME_REGEX);
+
+            if (Regex.IsMatch(name, NAME_REGEX))
+                return true;
+            else
+                throw new InvalidNameException("InvalidNameException Generated: Name is Invalid");
            
         }
 
-        public bool ValidateMobileNumber()
+        public bool ValidateMobileNumber(string mobileNumber)
         {
-            return Regex.IsMatch("91589833993", MOBILENUMBER_REGEX);
-        }
-        public bool validateEmail()
-        {
-            return Regex.IsMatch("kkkr0099@gmail.com", EMAIL_REGEX);
+
+
+            if (Regex.Equals(mobileNumber, MOBILENUMBER_REGEX))
+                return true;
+            else
+                throw new InvalidMobileNumberException("InvalidMobileNumberException Generated: Number is Invalid");
         }
 
-        public bool ValidatePassword()
+        public bool validateEmail(string email)
         {
-            return Regex.IsMatch("morningstar123",PASSWORD_REGEX);
+
+
+            if (Regex.IsMatch(email, EMAIL_REGEX))
+                return true;
+            else
+                throw new InvalidEmailException("InvalidEmailException Generated: Email is Invalid");
+
+        }
+
+        public bool ValidatePassword(string password)
+        {
+
+            if (Regex.IsMatch(password, PASSWORD_REGEX))
+                return true;
+            else
+                throw new InvalidPasswordException("InvalidEmailException Generated: Email is Invalid");
         }
     }
-
-    
 }
