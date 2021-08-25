@@ -1,6 +1,6 @@
 ﻿using System;
-
-namespace UserRegistrationRegex
+using UserRegistrationRegex;
+namespace UserRegistrationLambda
 {
     public class Program
     {
@@ -57,7 +57,7 @@ namespace UserRegistrationRegex
             string password = Console.ReadLine();
             try
             {
-                bool validPassword = regex.ValidatePassword(password);
+                bool validPassword = regex.ValidatedPassword(password);
                 if (validPassword == true)
                     Console.WriteLine("The Password is valid");
                 else
