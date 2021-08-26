@@ -23,6 +23,14 @@ namespace UnitTestUserRegistration
             Assert.IsTrue(outputOne);
 
         }
+        [Test]
+        [TestCase("sagar")]
+        public void FirstNameExceptionTest(string input)
+        {
+            InvalidNameException ex = Assert.Throws<InvalidNameException>(() => regexval.ValidateFirstName(input));
+            Assert.AreEqual("Your Name is Invalid", ex.Message);
+        }
+
 
         [Test]
         [TestCase("7506074980")]
@@ -31,8 +39,16 @@ namespace UnitTestUserRegistration
         {
 
             bool outputTwo = regexval.ValidateMobileNumber(inputTwo);
-            Assert.IsFalse(outputTwo);
+            Assert.IsTrue(outputTwo);
         }
+
+        [Test]
+        [TestCase("999999999")]
+        public void PhoneNumberExceptionTest(string input)
+        {
+            InvalidMobileNumberException ex = Assert.Throws<InvalidMobileNumberException>(() => regexval.ValidateMobileNumber(input));
+            Assert.AreEqual("Your Number is Invalid", ex.Message);
+        }        
 
         [Test]
         [TestCase("sagar123@gmail.com")]
@@ -43,11 +59,28 @@ namespace UnitTestUserRegistration
         }
 
         [Test]
-        [TestCase("Morningstar123#")]
+        [TestCase("sagara123")]
+        public void EmailExceptionTest(string input)
+        {
+            InvalidEmailException ex = Assert.Throws<InvalidEmailException>(() => regexval.validateEmail(input));
+            Assert.AreEqual("Your email is Invalid", ex.Message);
+        }
+
+
+        [Test]
+        [TestCase("Morningstar123")]
         public void TestPassword(string inputFour)
         {
-            bool outputFour = regexval.ValidatePassword(inputFour);
-            Assert.IsFalse(outputFour);
+            bool outputFour = regexval.ValidatedPassword(inputFour);
+            Assert.IsTrue(outputFour);
+        }
+
+        [Test]
+        [TestCase("morningstar123")]
+        public void PasswordExceptionTest(string input)
+        {
+            InvalidPasswordException ex = Assert.Throws<InvalidPasswordException>(() => regexval.ValidatedPassword(input));
+            Assert.AreEqual("Your password is Invalid", ex.Message);
         }
 
     }

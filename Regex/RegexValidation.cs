@@ -10,7 +10,7 @@ namespace UserRegistrationRegex
         public static string NAME_REGEX = "^[A-Z]{1}[A-Za-z]{3,}$";
         public static string MOBILENUMBER_REGEX = @"\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})";
         public static string EMAIL_REGEX = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
-        public static string PASSWORD_REGEX = "^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{8,}$";
+        public static string PASSWORD_REGEX = @"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@#$%^&+=]).*$";
 
 
 
